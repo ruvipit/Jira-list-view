@@ -1,8 +1,7 @@
-
-import { TopNav } from "@/components/TopNav"
-import { Sidebar } from "@/components/Sidebar"
-import { ProjectHeader } from "@/components/ProjectHeader"
-import { TaskList } from "@/components/TaskList"
+import { TopNav } from "@/components/TopNav";
+import { Sidebar } from "@/components/Sidebar";
+import { ProjectHeader } from "@/components/ProjectHeader";
+import { TaskList } from "@/components/TaskList";
 
 export default function Index() {
   return (
@@ -18,5 +17,5 @@ export default function Index() {
         </main>
       </div>
     </div>
-  )
+  );
 }

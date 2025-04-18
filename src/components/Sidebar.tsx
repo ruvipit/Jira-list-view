@@ -1,4 +1,3 @@
-
 import {
   Home,
   Clock,
@@ -10,15 +9,16 @@ import {
   ChevronDown,
   CheckSquare,
   User,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "./ui/button"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
+import { useState } from "react";
 
 interface NavItemProps {
-  icon: typeof Home
-  children: React.ReactNode
-  className?: string
-  active?: boolean
+  icon: typeof Home;
+  children: React.ReactNode;
+  className?: string;
+  active?: boolean;
 }
 
 function NavItem({ icon: Icon, children, className, active }: NavItemProps) {
@@ -34,48 +34,63 @@ function NavItem({ icon: Icon, children, className, active }: NavItemProps) {
       <Icon className="h-4 w-4" />
       {children}
     </Button>
-  )
+  );
 }
 
 export function Sidebar() {
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+
   return (
-    <div className="w-64 border-r bg-gray-50/50 flex flex-col h-[calc(100vh-3.5rem)]">
-      <div className="p-3 space-y-1">
-        <NavItem icon={Home}>Your work</NavItem>
-        <NavItem icon={Clock}>Recent</NavItem>
-        <NavItem icon={Star}>Starred</NavItem>
-        <NavItem icon={LayoutDashboard}>Dashboard</NavItem>
-        <NavItem icon={GridIcon}>Apps</NavItem>
-        <NavItem icon={FolderKanban}>Projects</NavItem>
-      </div>
-      
-      <div className="border-t mt-2 pt-2 p-3">
-        <div className="flex items-center justify-between text-sm font-medium mb-2">
-          <span>Starred</span>
-          <Button variant="ghost" size="icon" className="h-6 w-6">
-            <ChevronDown className="h-4 w-4" />
-          </Button>
-        </div>
-        <NavItem icon={CheckSquare} className="text-sm" active>
-          Marketing launches
-        </NavItem>
-      </div>
-
-      <div className="border-t mt-2 pt-2 p-3">
-        <div className="flex items-center justify-between text-sm font-medium mb-2">
-          <span>Recent</span>
-        </div>
-        <NavItem icon={User} className="text-sm">
-          Beyond gravity
-        </NavItem>
-      </div>
-
-      <div className="mt-auto border-t p-3">
-        <Button variant="ghost" className="w-full justify-start gap-2">
-          <Filter className="h-4 w-4" />
+    <aside className="w-64 bg-white h-screen border-r border-gray-300">
+      <ul className="text-black text-sm leading-5">
+        <li className="p-2 h-8 flex items-center">
+          <div className="h-6 w-6 flex items-center justify-center mr-1">
+            <Home className="h-4 w-4" />
+          </div>
+          For You
+        </li>
+        <li className="p-2 h-8 flex items-center">
+          <div className="h-6 w-6 flex items-center justify-center mr-1">
+            <Star className="h-4 w-4" />
+          </div>
+          Starred
+        </li>
+        <li className="p-2 h-8 relative">
+          <button
+            className="w-full text-left flex items-center"
+            onClick={() => setIsProjectsOpen(!isProjectsOpen)}
+          >
+            <div className="h-6 w-6 flex items-center justify-center mr-1">
+              <FolderKanban className="h-4 w-4" />
+            </div>
+            Projects
+          </button>
+          {isProjectsOpen && (
+            <ul className="pl-0 mb-4">
+              <li className="p-2 h-8 bg-blue-50 text-blue-600 flex items-center relative" style={{ paddingLeft: '40px' }}>
+                <div className="h-6 w-6 flex items-center justify-center mr-[2px] absolute left-2">
+                  <FolderKanban className="h-4 w-4" />
+                </div>
+                Marketing Launches
+              </li>
+            </ul>
+          )}
+        </li>
+        {/* Ensure proper spacing by dynamically adjusting margin */}
+        {isProjectsOpen && <div style={{ marginBottom: '32px' }}></div>}
+        <li className="p-2 h-8 flex items-center">
+          <div className="h-6 w-6 flex items-center justify-center mr-1">
+            <Filter className="h-4 w-4" />
+          </div>
           Filters
-        </Button>
-      </div>
-    </div>
-  )
+        </li>
+        <li className="p-2 h-8 flex items-center">
+          <div className="h-6 w-6 flex items-center justify-center mr-1">
+            <LayoutDashboard className="h-4 w-4" />
+          </div>
+          Dashboards
+        </li>
+      </ul>
+    </aside>
+  );
 }
