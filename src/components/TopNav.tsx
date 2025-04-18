@@ -10,6 +10,9 @@ export function TopNav() {
         <div className="flex items-center space-x-2">
           <img src="/lovable-uploads/e3d3ec96-a1c4-4971-a8b6-e1c89a5e2647.png" alt="Jira" className="h-6" />
         </div>
+      </div>
+      
+      <div className="absolute left-1/2 transform -translate-x-1/2">
         <div className="relative">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
           <input
@@ -19,6 +22,7 @@ export function TopNav() {
           />
         </div>
       </div>
+
       <div className="flex items-center space-x-4">
         <Button variant="default" className="gap-2 mr-4">
           <Plus className="h-4 w-4" />
