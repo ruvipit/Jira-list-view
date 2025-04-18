@@ -1,4 +1,3 @@
-
 import { Button } from "./ui/button"
 import {
   Calendar,
@@ -16,9 +15,8 @@ export function ProjectHeader() {
       <div className="px-8 py-4 flex items-center justify-between">
         <span className="text-xl font-semibold">Marketing launches</span>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="gap-1">
+          <Button variant="ghost" size="icon" className="h-8 w-8">
             <Share2 className="h-4 w-4" />
-            Share
           </Button>
           <Button variant="ghost" size="icon" className="h-8 w-8">
             <Zap className="h-4 w-4" />
