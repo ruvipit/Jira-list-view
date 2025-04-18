@@ -1,5 +1,5 @@
 
-import { Search, Settings, BellDot, HelpCircle, MessageCircle } from "lucide-react"
+import { Search, Settings, BellDot, HelpCircle, MessageCircle, Plus } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 
@@ -20,6 +20,10 @@ export function TopNav() {
         </div>
       </div>
       <div className="flex items-center space-x-4">
+        <Button variant="default" className="gap-2 mr-4">
+          <Plus className="h-4 w-4" />
+          Create
+        </Button>
         <Button variant="ghost" size="icon">
           <MessageCircle className="h-5 w-5" />
         </Button>
