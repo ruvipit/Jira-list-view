@@ -14,8 +14,8 @@ export function ProjectHeader() {
   return (
     <div className="border-b">
       <div className="px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <span className="text-xl font-semibold">Marketing launches</span>
+        <span className="text-xl font-semibold">Marketing launches</span>
+        <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" className="gap-1">
             <Share2 className="h-4 w-4" />
             Share
