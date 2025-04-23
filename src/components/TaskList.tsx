@@ -116,13 +116,13 @@ export function TaskList() {
           </Button>
           <div className="flex items-center border border-gray-300 rounded-sm w-[104px] h-[36px] pl-[1px]">
             <button
-              className="flex-1 h-[32px] text-sm font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px]"
+              className="flex-1 h-[32px] text-sm font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px] flex items-center justify-center"
               onClick={() => console.log("Basic selected")}
             >
               Basic
             </button>
             <button
-              className="flex-1 h-[32px] text-sm font-medium text-gray-500 bg-white rounded-[2px]"
+              className="flex-1 h-[32px] text-sm font-medium text-gray-500 bg-white rounded-[2px] flex items-center justify-center"
               onClick={() => console.log("JQL selected")}
             >
               JQL
@@ -202,10 +202,20 @@ export function TaskList() {
           <Button variant="outline" size="sm">
             Group
           </Button>
-          <Button variant="outline" size="sm" className="flex items-center gap-1">
-            <TableProperties className="h-4 w-4" />
-            <PanelLeft className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center border border-gray-300 rounded-sm w-[64px] h-[36px] pl-[1px]">
+            <button
+              className="w-[32px] h-[32px] font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px] flex items-center justify-center"
+              onClick={() => console.log("Table selected")}
+            >
+              <TableProperties className="h-4 w-4" /> 
+            </button>
+            <button
+              className="w-[32px] h-[32px] font-medium text-black-500 bg-white rounded-[2px] flex items-center justify-center"
+              onClick={() => console.log("Detail selected")}
+            >
+              <PanelLeft className="h-4 w-4" />
+            </button>
+          </div>
           {selectedTypes.length > 0 && (
             <Button
               variant="outline"
