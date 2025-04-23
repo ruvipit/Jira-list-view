@@ -40,3 +40,46 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Toggle Button Styling */
+.toggle-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  width: 104px;
+  height: 32px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1px solid rgba(11, 18, 40, 0.14);
+  justify-content: center;
+  gap: 2px;
+}
+
+.toggle-button .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 8px;
+  width: 53px;
+  height: 26px;
+  min-height: 24px;
+  border-radius: 2px;
+  font-family: 'SF Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #1868DB;
+}
+
+.toggle-button .button.inactive {
+  color: #505258;
+}
+
+.toggle-button .button.active {
+  background: #E9F2FE;
+  border: 1px solid #1868DB;
+}

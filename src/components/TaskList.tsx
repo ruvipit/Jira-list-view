@@ -11,52 +11,69 @@ import {
   ListFilter,
   MoreHorizontal,
   Zap,
+  RefreshCw,
+  Ellipsis,
+  Table2,
+  PanelLeft,
+  TableProperties,
 } from "lucide-react"
 
 const tasks = [
   {
     key: "ML-1",
+    type: "Epic",
     summary: "Update header logo to svg",
     status: "TO DO",
     category: "Help platform",
+    icon: "Zap", // Correct icon for Epic
   },
   {
     key: "ML-2",
+    type: "Epic",
     summary: "Review header logo",
     status: "TO DO",
     category: "Creative",
-    subTasks: [
-      {
-        key: "ML-3",
-        summary: "New template illustration",
-        status: "TO DO",
-        category: "Creative",
-      },
-      {
-        key: "ML-4",
-        summary: "Finalise marketing campaign presentation",
-        status: "IN PROGRESS",
-        category: "Help platform",
-      },
-      {
-        key: "ML-5",
-        summary: "New logo for client",
-        status: "IN PROGRESS",
-        category: "Social media",
-      },
-    ],
+    icon: "Zap", // Correct icon for Epic
+  },
+  {
+    key: "ML-3",
+    type: "Task",
+    summary: "New template illustration",
+    status: "TO DO",
+    category: "Creative",
+    icon: "Task (16px).svg", // Correct icon for Task
+  },
+  {
+    key: "ML-4",
+    type: "Task",
+    summary: "Finalise marketing campaign presentation",
+    status: "IN PROGRESS",
+    category: "Help platform",
+    icon: "Task (16px).svg", // Correct icon for Task
+  },
+  {
+    key: "ML-5",
+    type: "Task",
+    summary: "New logo for client",
+    status: "IN PROGRESS",
+    category: "Social media",
+    icon: "Task (16px).svg", // Correct icon for Task
   },
   {
     key: "ML-6",
+    type: "Epic",
     summary: "Draft marketing campaign Q1",
     status: "IN PROGRESS",
     category: "Social media",
+    icon: "Zap", // Correct icon for Epic
   },
   {
     key: "ML-7",
+    type: "Epic",
     summary: "Review social media campaign",
     status: "DONE",
     category: "Help platform",
+    icon: "Zap", // Correct icon for Epic
   },
 ]
 
@@ -73,13 +90,21 @@ export function TaskList() {
     );
   };
 
-  const filteredTasks = selectedTypes.length
-    ? tasks.filter((task) =>
-        selectedTypes.includes("Task")
-          ? task.summary === "Task"
-          : true
-      )
-    : tasks;
+  const filteredTasks = tasks.filter((task) => {
+    if (selectedTypes.length === 0) {
+      return true; // Show all rows if no filters are selected
+    }
+    if (selectedTypes.includes("Epic") && selectedTypes.includes("Task")) {
+      return true; // Show both Epics and Tasks
+    }
+    if (selectedTypes.includes("Epic")) {
+      return ["ML-1", "ML-2", "ML-6", "ML-7"].includes(task.key); // Show only Epics
+    }
+    if (selectedTypes.includes("Task")) {
+      return ["ML-3", "ML-4", "ML-5"].includes(task.key); // Show only Tasks
+    }
+    return false; // Hide rows if no matching filter is found
+  });
 
   return (
     <div className="p-6">
@@ -89,12 +114,20 @@ export function TaskList() {
             <Zap className="h-4 w-4" />
             AI
           </Button>
-          <Button variant="outline" size="sm">
-            Basic
-          </Button>
-          <Button variant="outline" size="sm">
-            JQL
-          </Button>
+          <div className="flex items-center border border-gray-300 rounded-sm w-[104px] h-[36px] pl-[1px]">
+            <button
+              className="flex-1 h-[32px] text-sm font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px]"
+              onClick={() => console.log("Basic selected")}
+            >
+              Basic
+            </button>
+            <button
+              className="flex-1 h-[32px] text-sm font-medium text-gray-500 bg-white rounded-[2px]"
+              onClick={() => console.log("JQL selected")}
+            >
+              JQL
+            </button>
+          </div>
           <div className="relative">
             <input
               type="text"
@@ -150,22 +183,47 @@ export function TaskList() {
             More filters
             <ChevronDown className="h-4 w-4" />
           </Button>
+          {selectedTypes.length > 0 && (
+            <Button
+              variant="link"
+              size="sm"
+              className="text-blue-500"
+              onClick={() => setSelectedTypes([])}
+            >
+              Clear filters
+            </Button>
+          )}
         </div>
         <div className="flex items-center gap-2"> {/* Right group */}
+         
           <Button variant="outline" size="sm">
             <ListFilter className="h-4 w-4" />
           </Button>
           <Button variant="outline" size="sm">
             Group
           </Button>
-          <Button variant="outline" size="sm">
-            <LayoutGrid className="h-4 w-4" />
+          <Button variant="outline" size="sm" className="flex items-center gap-1">
+            <TableProperties className="h-4 w-4" />
+            <PanelLeft className="h-4 w-4" />
           </Button>
+          {selectedTypes.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setSelectedTypes([])}
+            >
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+          )}
+          <Button variant="outline" size="sm">
+            <Ellipsis className="h-4 w-4" />
+          </Button>
+         
         </div>
       </div>
 
       <div className="bg-white rounded-md border">
-        <table className="w-full">
+        <table className="w-full table-auto">
           <thead>
             <tr className="border-b text-sm">
               <th className="px-4 py-2 font-normal text-left w-8">
@@ -182,84 +240,48 @@ export function TaskList() {
           </thead>
           <tbody>
             {filteredTasks.map((task) => (
-              <>
-                <tr key={task.key} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-2">
-                    <Checkbox />
-                  </td>
-                  <td className="px-4 py-2">
-                    {task.key === "ML-1" || task.key === "ML-6" || task.key === "ML-7" ? (
-                      <ChevronRight className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
+              <tr key={task.key} className="border-b hover:bg-gray-50">
+                <td className="px-4 py-2">
+                  <Checkbox />
+                </td>
+                <td className="px-4 py-2">
+                  {task.key === "ML-1" || task.key === "ML-6" || task.key === "ML-7" ? (
+                    <ChevronRight className="h-4 w-4" />
+                  ) : task.key === "ML-2" ? (
+                    <ChevronDown className="h-4 w-4" />
+                  ) : (
+                    <img src="/AllWorkHierarchyIcon.svg" alt="Hierarchy Icon" className="h-4 w-4" />
+                  )}
+                </td>
+                <td className="px-4 py-2">
+                  {task.icon === "Zap" ? (
                     <Zap className="h-4 w-4 text-purple-500" />
-                  </td>
-                  <td className="px-4 py-2 text-blue-600">{task.key}</td>
-                  <td className="px-4 py-2">{task.summary}</td>
-                  <td className="px-4 py-2">
-                    <Badge
-                      variant="secondary"
-                      className={cn(
-                        task.status === "IN PROGRESS" && "bg-blue-50 text-blue-700",
-                        task.status === "DONE" && "bg-green-50 text-green-700"
-                      )}
-                    >
-                      {task.status}
-                    </Badge>
-                  </td>
-                  <td className="px-4 py-2">
-                    <Badge variant="outline">{task.category}</Badge>
-                  </td>
-                  <td className="px-4 py-2">
-                    <Button variant="ghost" size="sm">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </td>
-                </tr>
-                {task.subTasks &&
-                  task.subTasks.map((subTask) => (
-                    <tr
-                      key={subTask.key}
-                      className={`border-b hover:bg-gray-50 pl-8 ${
-                        selectedTypes.includes("Task") && subTask.summary !== "Task" ? "hidden" : ""
-                      }`}
-                    >
-                      <td className="px-4 py-2">
-                        <Checkbox />
-                      </td>
-                      <td className="px-4 py-2">
-                        <img src="/AllWorkHierarchyIcon.svg" alt="Hierarchy Icon" className="h-4 w-4" />
-                      </td>
-                      <td className="px-4 py-2">
-                        <img src="/Task (16px).svg" alt="Task Icon" className="h-4 w-4" />
-                      </td>
-                      <td className="px-4 py-2 text-blue-600">{subTask.key}</td>
-                      <td className="px-4 py-2">{subTask.summary}</td>
-                      <td className="px-4 py-2">
-                        <Badge
-                          variant="secondary"
-                          className={cn(
-                            subTask.status === "IN PROGRESS" && "bg-blue-50 text-blue-700",
-                            subTask.status === "DONE" && "bg-green-50 text-green-700"
-                          )}
-                        >
-                          {subTask.status}
-                        </Badge>
-                      </td>
-                      <td className="px-4 py-2">
-                        <Badge variant="outline">{subTask.category}</Badge>
-                      </td>
-                      <td className="px-4 py-2">
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-              </>
+                  ) : (
+                    <img src={`/${task.icon}`} alt="Task Icon" className="h-4 w-4" />
+                  )}
+                </td>
+                <td className="px-4 py-2 text-blue-600">{task.key}</td>
+                <td className="px-4 py-2">{task.summary}</td>
+                <td className="px-4 py-2">
+                  <Badge
+                    variant="secondary"
+                    className={cn(
+                      task.status === "IN PROGRESS" && "bg-blue-50 text-blue-700",
+                      task.status === "DONE" && "bg-green-50 text-green-700"
+                    )}
+                  >
+                    {task.status}
+                  </Badge>
+                </td>
+                <td className="px-4 py-2">
+                  <Badge variant="outline">{task.category}</Badge>
+                </td>
+                <td className="px-4 py-2">
+                  <Button variant="ghost" size="sm">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
