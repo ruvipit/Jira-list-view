@@ -1,7 +1,9 @@
+
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-import { Avatar } from "./ui/avatar";
-import { PlusIcon } from "lucide-react";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { PlusIcon, MoreHorizontal } from "lucide-react";
+import { Badge } from "./ui/badge";
 import { BoardViewControls } from "./BoardViewControls";
 
 interface Task {
@@ -72,49 +74,61 @@ export function BoardView() {
       <BoardViewControls />
       <div className="flex gap-6">
         {columns.map((column) => (
-          <div key={column.title} className="flex-1 min-w-[300px]">
+          <div key={column.title} className="flex-1 min-w-[300px] bg-white rounded-lg p-4">
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="font-medium text-sm">{column.title}</span>
-                <span className="text-sm text-gray-500">{column.tasks.length}</span>
+                <span className="font-semibold text-sm tracking-wide">{column.title}</span>
+                <span className="text-sm text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
+                  {column.tasks.length}
+                </span>
               </div>
               <Button variant="ghost" size="icon" className="h-8 w-8">
-                <PlusIcon className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4" />
               </Button>
             </div>
             <div className="space-y-3">
               {column.tasks.map((task) => (
-                <Card key={task.id} className="p-4">
+                <Card key={task.id} className="p-4 hover:shadow-md transition-shadow">
                   <div className="space-y-3">
-                    <h3 className="text-sm font-medium">{task.title}</h3>
-                    <div className="flex flex-wrap gap-1">
+                    <h3 className="text-sm font-medium leading-snug">{task.title}</h3>
+                    <div className="flex flex-wrap gap-1.5">
                       {task.tags.map((tag) => (
-                        <span
+                        <Badge
                           key={tag}
-                          className="px-2 py-1 text-xs rounded-full bg-gray-100"
+                          variant="outline"
+                          className="rounded-full bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
                         >
                           {tag}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                     <div className="flex items-center justify-between">
                       {task.assignee && (
-                        <Avatar>
-                          <div className="flex h-full w-full items-center justify-center bg-blue-500 text-white">
+                        <Avatar className="h-6 w-6">
+                          <AvatarFallback className="bg-blue-500 text-white text-xs">
                             {task.assignee.avatar}
-                          </div>
+                          </AvatarFallback>
                         </Avatar>
                       )}
                       {task.dueDate && (
-                        <span className="text-xs text-gray-500">
-                          {task.dueDate}
-                        </span>
+                        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                          <span className="bg-gray-50 px-2 py-1 rounded-full border border-gray-200">
+                            {task.dueDate}
+                          </span>
+                        </div>
                       )}
                     </div>
                   </div>
                 </Card>
               ))}
             </div>
+            <Button
+              variant="ghost"
+              className="w-full mt-3 text-gray-500 hover:text-gray-700 flex items-center justify-center gap-1"
+            >
+              <PlusIcon className="h-4 w-4" />
+              Create
+            </Button>
           </div>
         ))}
       </div>
