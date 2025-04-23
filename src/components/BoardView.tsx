@@ -1,8 +1,8 @@
-
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Avatar } from "./ui/avatar";
 import { PlusIcon } from "lucide-react";
+import { BoardViewControls } from "./BoardViewControls";
 
 interface Task {
   id: string;
@@ -69,6 +69,7 @@ const columns = [
 export function BoardView() {
   return (
     <div className="p-6">
+      <BoardViewControls />
       <div className="flex gap-6">
         {columns.map((column) => (
           <div key={column.title} className="flex-1 min-w-[300px]">

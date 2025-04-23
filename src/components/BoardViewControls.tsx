@@ -1,0 +1,98 @@
+
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select"
+import { Search } from "lucide-react"
+
+const assignees = [
+  { id: "1", name: "John", avatar: "J" },
+  { id: "2", name: "Sarah", avatar: "S" },
+  { id: "3", name: "Mike", avatar: "M" },
+]
+
+export function BoardViewControls() {
+  return (
+    <div className="flex items-center gap-3 pb-6">
+      <div className="relative flex-1 max-w-[240px]">
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+        <Input
+          type="search"
+          placeholder="Search board"
+          className="pl-9"
+        />
+      </div>
+
+      <div className="flex items-center gap-2">
+        <div className="flex -space-x-2">
+          {assignees.map((user) => (
+            <Avatar key={user.id} className="border-2 border-white h-8 w-8">
+              <AvatarFallback className="bg-blue-500 text-white text-sm">
+                {user.avatar}
+              </AvatarFallback>
+            </Avatar>
+          ))}
+          <button className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-gray-50 hover:bg-gray-100">
+            <span className="text-sm text-gray-600">+3</span>
+          </button>
+        </div>
+
+        <Select>
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="Assignee" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All assignees</SelectItem>
+            <SelectItem value="john">John</SelectItem>
+            <SelectItem value="sarah">Sarah</SelectItem>
+            <SelectItem value="mike">Mike</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All types</SelectItem>
+            <SelectItem value="task">Task</SelectItem>
+            <SelectItem value="bug">Bug</SelectItem>
+            <SelectItem value="feature">Feature</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="todo">To Do</SelectItem>
+            <SelectItem value="in-progress">In Progress</SelectItem>
+            <SelectItem value="done">Done</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Button className="ml-4">Complete sprint</Button>
+
+        <Select>
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="Group" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="none">No grouping</SelectItem>
+            <SelectItem value="assignee">By Assignee</SelectItem>
+            <SelectItem value="type">By Type</SelectItem>
+            <SelectItem value="status">By Status</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  )
+}
