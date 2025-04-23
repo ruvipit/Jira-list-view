@@ -1,4 +1,6 @@
+
 import { Button } from "./ui/button"
+import { Link, useLocation } from "react-router-dom"
 import {
   Calendar,
   LayoutDashboard,
@@ -10,6 +12,8 @@ import {
 } from "lucide-react"
 
 export function ProjectHeader() {
+  const location = useLocation();
+
   return (
     <div className="border-b">
       <div className="px-8 py-4 flex items-center justify-between">
@@ -28,9 +32,15 @@ export function ProjectHeader() {
           <LayoutDashboard className="h-4 w-4" />
           Summary
         </Button>
-        <Button variant="ghost" className="gap-2">
-          <LayoutDashboard className="h-4 w-4" />
-          Board
+        <Button
+          variant="ghost"
+          className="gap-2"
+          asChild
+        >
+          <Link to="/board" className={location.pathname === '/board' ? 'text-blue-600' : ''}>
+            <LayoutDashboard className="h-4 w-4" />
+            Board
+          </Link>
         </Button>
         <Button variant="ghost" className="gap-2">
           <Clock className="h-4 w-4" />
@@ -44,9 +54,15 @@ export function ProjectHeader() {
           <FileText className="h-4 w-4" />
           Pages
         </Button>
-        <Button variant="ghost" className="gap-2 text-blue-600">
-          <ListTodo className="h-4 w-4" />
-          Tasks
+        <Button
+          variant="ghost"
+          className="gap-2"
+          asChild
+        >
+          <Link to="/" className={location.pathname === '/' ? 'text-blue-600' : ''}>
+            <ListTodo className="h-4 w-4" />
+            Tasks
+          </Link>
         </Button>
       </div>
     </div>
