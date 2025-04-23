@@ -1,4 +1,3 @@
-
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback } from "./ui/avatar"
@@ -61,9 +60,8 @@ export function BoardViewControls() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All types</SelectItem>
+            <SelectItem value="epic">Epic</SelectItem>
             <SelectItem value="task">Task</SelectItem>
-            <SelectItem value="bug">Bug</SelectItem>
-            <SelectItem value="feature">Feature</SelectItem>
           </SelectContent>
         </Select>
 
