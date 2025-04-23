@@ -1,21 +1,15 @@
-import { TopNav } from "@/components/TopNav";
-import { Sidebar } from "@/components/Sidebar";
+
 import { ProjectHeader } from "@/components/ProjectHeader";
 import { TaskList } from "@/components/TaskList";
+import { Layout } from "@/components/Layout";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <TopNav />
-      <div className="flex">
-        <Sidebar />
-        <main className="flex-1">
-          <div className="sticky top-0 bg-white z-10">
-            <ProjectHeader />
-          </div>
-          <TaskList />
-        </main>
+    <Layout>
+      <div className="sticky top-0 bg-white z-10">
+        <ProjectHeader />
       </div>
-    </div>
+      <TaskList />
+    </Layout>
   );
 }
