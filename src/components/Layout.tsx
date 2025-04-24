@@ -20,8 +20,8 @@ export function Layout({ children }: LayoutProps) {
         <ResizablePanel defaultSize={20} minSize={15} maxSize={30}>
           <Sidebar />
         </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel>
+        <ResizableHandle className="w-0 transition-all hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0" />
+        <ResizablePanel defaultSize={80}>
           <main className="flex-1">{children}</main>
         </ResizablePanel>
       </ResizablePanelGroup>

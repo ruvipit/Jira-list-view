@@ -1,3 +1,4 @@
+
 import {
   Home,
   Clock,
@@ -41,19 +42,19 @@ export function Sidebar() {
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
 
   return (
-    <aside className="w-64 bg-white h-screen border-r border-gray-300">
-      <ul className="text-black text-sm leading-5">
+    <div className="h-full flex flex-col overflow-hidden">
+      <ul className="text-black text-sm leading-5 flex-1 overflow-y-auto">
         <li className="p-2 h-8 flex items-center">
           <div className="h-6 w-6 flex items-center justify-center mr-1">
             <Home className="h-4 w-4" />
           </div>
-          For You
+          <span className="truncate">For You</span>
         </li>
         <li className="p-2 h-8 flex items-center">
           <div className="h-6 w-6 flex items-center justify-center mr-1">
             <Star className="h-4 w-4" />
           </div>
-          Starred
+          <span className="truncate">Starred</span>
         </li>
         <li className="p-2 h-8 relative">
           <button
@@ -63,7 +64,7 @@ export function Sidebar() {
             <div className="h-6 w-6 flex items-center justify-center mr-1">
               <FolderKanban className="h-4 w-4" />
             </div>
-            Projects
+            <span className="truncate">Projects</span>
           </button>
           {isProjectsOpen && (
             <ul className="pl-0 mb-4">
@@ -71,26 +72,25 @@ export function Sidebar() {
                 <div className="h-6 w-6 flex items-center justify-center mr-[2px] absolute left-2">
                   <FolderKanban className="h-4 w-4" />
                 </div>
-                Marketing Launches
+                <span className="truncate">Marketing Launches</span>
               </li>
             </ul>
           )}
         </li>
-        {/* Ensure proper spacing by dynamically adjusting margin */}
         {isProjectsOpen && <div style={{ marginBottom: '32px' }}></div>}
         <li className="p-2 h-8 flex items-center">
           <div className="h-6 w-6 flex items-center justify-center mr-1">
             <Filter className="h-4 w-4" />
           </div>
-          Filters
+          <span className="truncate">Filters</span>
         </li>
         <li className="p-2 h-8 flex items-center">
           <div className="h-6 w-6 flex items-center justify-center mr-1">
             <LayoutDashboard className="h-4 w-4" />
           </div>
-          Dashboards
+          <span className="truncate">Dashboards</span>
         </li>
       </ul>
-    </aside>
+    </div>
   );
 }
