@@ -1,3 +1,4 @@
+
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback } from "./ui/avatar"
@@ -8,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select"
-import { Search } from "lucide-react"
+import { Search, RefreshCw } from "lucide-react"
 import { useState } from "react"
 import { SaveListModal } from "./SaveListModal"
 
@@ -92,12 +93,22 @@ export function BoardViewControls() {
           </Select>
 
           {showSaveButton && (
-            <Button 
-              className="ml-4" 
-              onClick={() => setIsSaveModalOpen(true)}
-            >
-              Complete sprint
-            </Button>
+            <>
+              <Button 
+                className="ml-4" 
+                onClick={() => setIsSaveModalOpen(true)}
+              >
+                Complete sprint
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-10 w-10" 
+                onClick={() => setIsSaveModalOpen(true)}
+              >
+                <RefreshCw className="h-5 w-5" />
+              </Button>
+            </>
           )}
 
           <Select>
