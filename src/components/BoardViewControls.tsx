@@ -95,8 +95,7 @@ export function BoardViewControls() {
           {showSaveButton && (
             <>
               <Button 
-                className="ml-4" 
-                onClick={() => setIsSaveModalOpen(true)}
+                className="ml-4"
               >
                 Complete sprint
               </Button>
