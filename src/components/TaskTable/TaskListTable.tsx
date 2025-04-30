@@ -30,16 +30,16 @@ export function TaskListTable({ filteredTasks }: TaskListTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[40px]">
+            <TableHead className="p-2">
               <Checkbox />
             </TableHead>
-            <TableHead className="w-[30px]"></TableHead>
+            <TableHead className="p-2"></TableHead>
             <TableHead>Type</TableHead>
             <TableHead>Key</TableHead>
             <TableHead>Summary</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Category</TableHead>
-            <TableHead className="w-[40px]"></TableHead>
+            <TableHead className="p-2"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -57,7 +57,7 @@ export function TaskListTable({ filteredTasks }: TaskListTableProps) {
                   <div className="h-4 w-4" /> // Empty placeholder for alignment
                 )}
               </TableCell>
-              <TableCell className="p-2">
+              <TableCell className="p-4">
                 {task.icon === "Zap" ? (
                   <Zap className="h-4 w-4 text-purple-500" />
                 ) : task.icon === "Task (16px).svg" ? (
@@ -66,8 +66,8 @@ export function TaskListTable({ filteredTasks }: TaskListTableProps) {
                   <img src={`/${task.icon}`} alt="Task Icon" className="h-4 w-4" />
                 )}
               </TableCell>
-              <TableCell className="p-2 text-blue-600 font-medium">{task.key}</TableCell>
-              <TableCell className="p-2">{task.summary}</TableCell>
+              <TableCell className="p-4 text-blue-600 font-medium">{task.key}</TableCell>
+              <TableCell className="p-4">{task.summary}</TableCell>
               <TableCell className="p-2">
                 <Badge
                   variant="secondary"
