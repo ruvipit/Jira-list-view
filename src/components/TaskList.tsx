@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -18,6 +19,12 @@ import {
   TableProperties,
 } from "lucide-react"
 import { SaveListModal } from "./SaveListModal"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
 
 const tasks = [
   {
@@ -111,6 +118,11 @@ export function TaskList() {
   const handleSave = () => {
     console.log("List saved");
     setIsSaveModalOpen(false);
+  };
+  
+  const handleResetChanges = () => {
+    // Logic to reset changes would go here
+    console.log("Resetting to last saved state");
   };
 
   return (
@@ -224,13 +236,30 @@ export function TaskList() {
             </button>
           </div>
           {selectedTypes.length > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsSaveModalOpen(true)}
-            >
-              <RefreshCw className="h-4 w-4" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-white">
+                <DropdownMenuItem 
+                  className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
+                  onClick={() => setIsSaveModalOpen(true)}
+                >
+                  Save list
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
+                  onClick={handleResetChanges}
+                >
+                  Reset to last saved
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
           <SaveListModal
             isOpen={isSaveModalOpen}
