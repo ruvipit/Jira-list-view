@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { TaskListFilters } from "./TaskFilters/TaskListFilters"
 import { TaskListTable } from "./TaskTable/TaskListTable"
@@ -28,7 +27,7 @@ export function TaskList() {
       });
 
   return (
-    <div>
+    <div className="p-4 md:p-6">
       <TaskListFilters 
         selectedTypes={selectedTypes} 
         toggleType={toggleType} 

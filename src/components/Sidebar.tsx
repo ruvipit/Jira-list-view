@@ -1,4 +1,3 @@
-
 import {
   Home,
   Clock,
@@ -118,7 +117,7 @@ export function Sidebar() {
   const [value, setValue] = useState<string[]>(["Projects", "Filters"]);
 
   const projectItems = [
-    { name: "Marketing Launches", active: true },
+    { name: "Marketing Launches", active: location.pathname === "/", to: "/" },
     { name: "Online store updates" },
     { name: "View all projects" },
   ];
@@ -135,13 +134,13 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden bg-white border-r border-gray-100">
       <div className="text-black text-sm leading-5 flex-1 overflow-y-auto">
         <div className="space-y-1 p-2">
           <NavItem icon={FolderKanban}>Your work</NavItem>
           <NavItem icon={Clock}>Recent</NavItem>
           <NavItem icon={Star}>Starred</NavItem>
-          <NavItem icon={LayoutDashboard} to="/board">Dashboard</NavItem>
+          <NavItem icon={LayoutDashboard}>Dashboard</NavItem>
           
           <Accordion 
             type="multiple" 
