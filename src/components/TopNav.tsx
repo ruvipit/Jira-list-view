@@ -1,6 +1,7 @@
-import { Search, Settings, BellDot, HelpCircle, MessageCircle, Plus } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { Button } from "./ui/button"
+
+import { Search, Settings, BellDot, HelpCircle, MessageCircle, Plus } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
 
 export function TopNav() {
   return (
@@ -66,5 +67,5 @@ export function TopNav() {
         </Avatar>
       </div>
     </nav>
-  )
+  );
 }
