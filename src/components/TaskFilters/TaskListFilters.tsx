@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { 
@@ -7,7 +6,8 @@ import {
   TableProperties,
   PanelLeft,
   RefreshCw,
-  Ellipsis
+  Ellipsis,
+  ListFilter
 } from "lucide-react"
 import { TaskTypeFilter } from "./TaskTypeFilter"
 import {
