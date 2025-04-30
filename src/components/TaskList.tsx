@@ -17,6 +17,7 @@ import {
   PanelLeft,
   TableProperties,
 } from "lucide-react"
+import { SaveListModal } from "./SaveListModal"
 
 const tasks = [
   {
@@ -81,6 +82,7 @@ export function TaskList() {
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false)
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   const toggleType = (type: string) => {
     setSelectedTypes((prev) =>
@@ -105,6 +107,11 @@ export function TaskList() {
     }
     return false; // Hide rows if no matching filter is found
   });
+
+  const handleSave = () => {
+    console.log("List saved");
+    setIsSaveModalOpen(false);
+  };
 
   return (
     <div className="p-6">
@@ -220,11 +227,16 @@ export function TaskList() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setSelectedTypes([])}
+              onClick={() => setIsSaveModalOpen(true)}
             >
               <RefreshCw className="h-4 w-4" />
             </Button>
           )}
+          <SaveListModal
+            isOpen={isSaveModalOpen}
+            onClose={() => setIsSaveModalOpen(false)}
+            onSave={handleSave}
+          />
           <Button variant="outline" size="sm">
             <Ellipsis className="h-4 w-4" />
           </Button>
