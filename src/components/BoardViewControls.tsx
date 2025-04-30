@@ -9,6 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
 import { Search, RefreshCw } from "lucide-react"
 import { useState } from "react"
 import { SaveListModal } from "./SaveListModal"
@@ -29,6 +35,11 @@ export function BoardViewControls() {
       setIsSaveModalOpen(false)
       setShowSaveButton(false)
     }, 1000)
+  }
+  
+  const handleResetChanges = () => {
+    // Logic to reset changes would go here
+    console.log("Resetting to last saved state")
   }
 
   return (
@@ -99,14 +110,31 @@ export function BoardViewControls() {
               >
                 Complete sprint
               </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="h-10 w-10" 
-                onClick={() => setIsSaveModalOpen(true)}
-              >
-                <RefreshCw className="h-5 w-5" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-10 w-10"
+                  >
+                    <RefreshCw className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-white">
+                  <DropdownMenuItem 
+                    className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
+                    onClick={() => setIsSaveModalOpen(true)}
+                  >
+                    Save list
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
+                    onClick={handleResetChanges}
+                  >
+                    Reset to last saved
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           )}
 
