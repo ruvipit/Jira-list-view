@@ -22,17 +22,22 @@ import {
   AccordionItem,
   AccordionTrigger
 } from "./ui/accordion";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItemProps {
   icon: React.ElementType;
   children: React.ReactNode;
   className?: string;
   active?: boolean;
+  to?: string;
 }
 
-function NavItem({ icon: Icon, children, className, active }: NavItemProps) {
+function NavItem({ icon: Icon, children, className, active, to }: NavItemProps) {
+  const Component = to ? Link : Button;
+  
   return (
-    <Button
+    <Component
+      to={to}
       variant="ghost"
       className={cn(
         "w-full justify-start gap-2 pl-2 h-10",
@@ -42,7 +47,7 @@ function NavItem({ icon: Icon, children, className, active }: NavItemProps) {
     >
       <Icon className="h-4 w-4" />
       {children}
-    </Button>
+    </Component>
   );
 }
 
@@ -53,6 +58,7 @@ interface SidebarSectionProps {
     name: string;
     icon?: React.ElementType;
     active?: boolean;
+    to?: string;
   }[];
 }
 
@@ -76,16 +82,30 @@ function SidebarSection({ title, icon: Icon, items }: SidebarSectionProps) {
       <AccordionContent className="pb-0 pt-0">
         <div className="pl-7 space-y-1">
           {items.map((item, index) => (
-            <div 
-              key={index} 
-              className={cn(
-                "flex items-center h-10 pl-2 rounded-md text-sm",
-                item.active && "bg-blue-50 text-blue-600"
-              )}
-            >
-              {item.icon && <item.icon className="h-4 w-4 mr-2" />}
-              <span>{item.name}</span>
-            </div>
+            item.to ? (
+              <Link 
+                key={index} 
+                to={item.to}
+                className={cn(
+                  "flex items-center h-10 pl-2 rounded-md text-sm hover:bg-gray-100",
+                  item.active && "bg-blue-50 text-blue-600"
+                )}
+              >
+                {item.icon && <item.icon className="h-4 w-4 mr-2" />}
+                <span>{item.name}</span>
+              </Link>
+            ) : (
+              <div 
+                key={index} 
+                className={cn(
+                  "flex items-center h-10 pl-2 rounded-md text-sm",
+                  item.active && "bg-blue-50 text-blue-600"
+                )}
+              >
+                {item.icon && <item.icon className="h-4 w-4 mr-2" />}
+                <span>{item.name}</span>
+              </div>
+            )
           ))}
         </div>
       </AccordionContent>
@@ -94,6 +114,7 @@ function SidebarSection({ title, icon: Icon, items }: SidebarSectionProps) {
 }
 
 export function Sidebar() {
+  const location = useLocation();
   const [value, setValue] = useState<string[]>(["Projects", "Filters"]);
 
   const projectItems = [
@@ -103,7 +124,7 @@ export function Sidebar() {
   ];
 
   const filterItems = [
-    { name: "Search work items", icon: Search },
+    { name: "Search work items", icon: Search, to: "/search-work-items", active: location.pathname === "/search-work-items" },
     { name: "Starred" },
     { name: "Due soon" },
     { name: "Default filters", className: "font-semibold mt-2" },
@@ -120,7 +141,7 @@ export function Sidebar() {
           <NavItem icon={FolderKanban}>Your work</NavItem>
           <NavItem icon={Clock}>Recent</NavItem>
           <NavItem icon={Star}>Starred</NavItem>
-          <NavItem icon={LayoutDashboard}>Dashboard</NavItem>
+          <NavItem icon={LayoutDashboard} to="/board">Dashboard</NavItem>
           
           <Accordion 
             type="multiple" 

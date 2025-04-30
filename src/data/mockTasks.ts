@@ -6,7 +6,7 @@ export const tasks = [
     summary: "Update header logo to svg",
     status: "TO DO",
     category: "Help platform",
-    icon: "Zap", // Correct icon for Epic
+    icon: "Zap"
   },
   {
     key: "ML-2",
@@ -14,7 +14,7 @@ export const tasks = [
     summary: "Review header logo",
     status: "TO DO",
     category: "Creative",
-    icon: "Zap", // Correct icon for Epic
+    icon: "Zap"
   },
   {
     key: "ML-3",
@@ -22,7 +22,7 @@ export const tasks = [
     summary: "New template illustration",
     status: "TO DO",
     category: "Creative",
-    icon: "Task (16px).svg", // Correct icon for Task
+    icon: "Task (16px).svg"
   },
   {
     key: "ML-4",
@@ -30,7 +30,7 @@ export const tasks = [
     summary: "Finalise marketing campaign presentation",
     status: "IN PROGRESS",
     category: "Help platform",
-    icon: "Task (16px).svg", // Correct icon for Task
+    icon: "Task (16px).svg"
   },
   {
     key: "ML-5",
@@ -38,7 +38,7 @@ export const tasks = [
     summary: "New logo for client",
     status: "IN PROGRESS",
     category: "Social media",
-    icon: "Task (16px).svg", // Correct icon for Task
+    icon: "Task (16px).svg"
   },
   {
     key: "ML-6",
@@ -46,7 +46,7 @@ export const tasks = [
     summary: "Draft marketing campaign Q1",
     status: "IN PROGRESS",
     category: "Social media",
-    icon: "Zap", // Correct icon for Epic
+    icon: "Zap"
   },
   {
     key: "ML-7",
@@ -54,6 +54,70 @@ export const tasks = [
     summary: "Review social media campaign",
     status: "DONE",
     category: "Help platform",
-    icon: "Zap", // Correct icon for Epic
+    icon: "Zap"
   },
-]
+  {
+    key: "BG-32",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Engineering",
+    icon: "Zap"
+  },
+  {
+    key: "BG-33",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Engineering",
+    icon: "Zap"
+  },
+  {
+    key: "BG-34",
+    type: "Epic", 
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Engineering",
+    icon: "Zap"
+  },
+  {
+    key: "BG-35",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Engineering",
+    icon: "Zap"
+  },
+  {
+    key: "BG-41",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Engineering",
+    icon: "Zap"
+  },
+  {
+    key: "BG-42",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Help platform",
+    icon: "Zap"
+  },
+  {
+    key: "BG-43",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Social media",
+    icon: "Zap"
+  },
+  {
+    key: "BG-44",
+    type: "Epic",
+    summary: "Cell with text, if its too long it will truncate, keep typing to see",
+    status: "TO DO",
+    category: "Social media",
+    icon: "Zap"
+  }
+];
