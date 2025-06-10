@@ -1,4 +1,3 @@
-
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,7 +29,7 @@ export function TaskListTable({ filteredTasks }: TaskListTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="p-2">
+            <TableHead style={{ paddingLeft: '2rem' }} className="p-2">
               <Checkbox />
             </TableHead>
             <TableHead className="p-2"></TableHead>
@@ -45,7 +44,7 @@ export function TaskListTable({ filteredTasks }: TaskListTableProps) {
         <TableBody>
           {filteredTasks.map((task) => (
             <TableRow key={task.key} className="hover:bg-gray-50">
-              <TableCell className="p-2">
+              <TableCell style={{ paddingLeft: '2rem' }} className="p-2">
                 <Checkbox />
               </TableCell>
               <TableCell className="p-2">
