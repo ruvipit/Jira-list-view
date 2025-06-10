@@ -1,4 +1,3 @@
-
 import { Button } from "./ui/button"
 import { Link, useLocation } from "react-router-dom"
 import {
@@ -37,7 +36,7 @@ export function ProjectHeader() {
           className="gap-2"
           asChild
         >
-          <Link to="/board" className={location.pathname === '/board' ? 'text-blue-600' : ''}>
+          <Link to="/board" className={location.pathname === '/board' ? 'text-blue-600 font-semibold' : 'text-gray-600'}>
             <LayoutDashboard className="h-4 w-4" />
             Board
           </Link>
@@ -59,7 +58,7 @@ export function ProjectHeader() {
           className="gap-2"
           asChild
         >
-          <Link to="/" className={location.pathname === '/' ? 'text-blue-600' : ''}>
+          <Link to="/" className={location.pathname === '/' ? 'text-blue-600 font-semibold' : 'text-gray-600'}>
             <ListTodo className="h-4 w-4" />
             Tasks
           </Link>

@@ -58,6 +58,7 @@ interface SidebarSectionProps {
     icon?: React.ElementType;
     active?: boolean;
     to?: string;
+    className?: string;
   }[];
 }
 
@@ -87,7 +88,8 @@ function SidebarSection({ title, icon: Icon, items }: SidebarSectionProps) {
                 to={item.to}
                 className={cn(
                   "flex items-center h-10 pl-2 rounded-md text-sm hover:bg-gray-100",
-                  item.active && "bg-blue-50 text-blue-600"
+                  item.active && "bg-blue-50 text-blue-600",
+                  item.className
                 )}
               >
                 {item.icon && <item.icon className="h-4 w-4 mr-2" />}
@@ -98,7 +100,8 @@ function SidebarSection({ title, icon: Icon, items }: SidebarSectionProps) {
                 key={index} 
                 className={cn(
                   "flex items-center h-10 pl-2 rounded-md text-sm",
-                  item.active && "bg-blue-50 text-blue-600"
+                  item.active && "bg-blue-50 text-blue-600",
+                  item.className
                 )}
               >
                 {item.icon && <item.icon className="h-4 w-4 mr-2" />}
@@ -117,16 +120,16 @@ export function Sidebar() {
   const [value, setValue] = useState<string[]>(["Projects", "Filters"]);
 
   const projectItems = [
-    { name: "Marketing Launches", active: location.pathname === "/", to: "/" },
+    { name: "Marketing Launches", active: location.pathname !== "/search-work-items" && location.pathname.startsWith("/"), to: "/board", className: location.pathname !== "/search-work-items" && location.pathname.startsWith("/") ? "text-blue-600" : "text-black" },
     { name: "Online store updates" },
     { name: "View all projects" },
   ];
 
   const filterItems = [
-    { name: "Search work items", icon: Search, to: "/search-work-items", active: location.pathname === "/search-work-items" },
+    { name: "Search work items", icon: Search, to: "/search-work-items", active: location.pathname === "/search-work-items", className: location.pathname === "/search-work-items" ? "text-blue-600" : "text-black" },
     { name: "Starred" },
     { name: "Due soon" },
-    { name: "Default filters", className: "font-semibold mt-2" },
+    { name: "Default filters" },
     { name: "My open work items" },
     { name: "Reported by me" },
     { name: "All work items" },
