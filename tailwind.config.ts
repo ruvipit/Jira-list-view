@@ -19,7 +19,36 @@ export default {
 			}
 		},
 		extend: {
+			boxShadow: {
+				soft: '0 1px 2px 0 rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04)',
+				floating: '0 2px 6px -1px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)',
+				focus: '0 0 0 2px rgba(38,132,255,0.4)'
+			},
 			colors: {
+				neutral: {
+					50: '#f6f7f9',
+					100: '#eceef2',
+					200: '#d9dde3',
+					300: '#c1c7d0',
+					400: '#a6b0bd',
+					500: '#7a8699',
+					600: '#596773',
+					700: '#44515d',
+					800: '#2c3e50',
+					900: '#1d2731'
+				},
+				brand: {
+					50: '#e9f2ff',
+					100: '#cce0ff',
+					200: '#85b8ff',
+					300: '#579dff',
+					400: '#388bff',
+					500: '#1d7afc',
+					600: '#0c66e4',
+					700: '#0055cc',
+					800: '#09326c',
+					900: '#1c2b41'
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

@@ -27,13 +27,17 @@ export function TaskList() {
       });
 
   return (
-    <div className="p-4 md:p-6">
-      <TaskListFilters 
-        selectedTypes={selectedTypes} 
-        toggleType={toggleType} 
-        clearFilters={clearFilters}
-      />
-      <TaskListTable filteredTasks={filteredTasks} />
+    <div className="p-0 md:p-0 flex flex-col h-full">
+      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b px-6 pt-4 pb-3">
+        <TaskListFilters 
+          selectedTypes={selectedTypes} 
+          toggleType={toggleType} 
+          clearFilters={clearFilters}
+        />
+      </div>
+      <div className="px-6 py-4 overflow-auto flex-1">
+        <TaskListTable filteredTasks={filteredTasks} />
+      </div>
     </div>
   )
 }

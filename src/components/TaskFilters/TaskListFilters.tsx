@@ -38,115 +38,67 @@ export function TaskListFilters({ selectedTypes, toggleType, clearFilters }: Tas
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-2 mb-4 justify-between">
-      <div className="flex items-center gap-2 flex-wrap"> {/* Left group */}
-        <Button variant="outline" size="sm" className="gap-1">
-          <Zap className="h-4 w-4" />
+    <div className="flex flex-wrap items-center gap-3 justify-between">
+      <div className="flex items-center gap-2 flex-wrap">
+        <button className="inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-[13px] font-medium bg-white border border-gray-200 shadow-sm hover:bg-gray-50">
+          <Zap className="h-4 w-4 text-purple-500" />
           AI
-        </Button>
-        <div className="flex items-center border border-gray-300 rounded-sm w-[104px] h-[36px] pl-[1px]">
-          <button
-            className="flex-1 h-[32px] text-sm font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px] flex items-center justify-center"
-            onClick={() => console.log("Basic selected")}
-          >
-            Basic
-          </button>
-          <button
-            className="flex-1 h-[32px] text-sm font-medium text-gray-500 bg-white rounded-[2px] flex items-center justify-center"
-            onClick={() => console.log("JQL selected")}
-          >
-            JQL
-          </button>
+        </button>
+        <div className="flex items-center h-8 rounded-md border border-gray-200 bg-white overflow-hidden">
+          <button className="px-3 h-full text-[13px] font-medium bg-blue-50 text-blue-600 border-r border-gray-200">Basic</button>
+          <button className="px-3 h-full text-[13px] text-gray-600 hover:text-gray-800">JQL</button>
         </div>
         <div className="relative">
-          <input
-            type="text"
-            placeholder="Search work"
-            className="pl-4 pr-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 text-sm"
-          />
+          <input type="text" placeholder="Search work" className="h-8 w-60 rounded-md border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
-        <Button variant="outline" size="sm" className="gap-1">
-          Assignee
-          <ChevronDown className="h-4 w-4" />
-        </Button>
+        <ToolbarButton label="Assignee" />
         <TaskTypeFilter selectedTypes={selectedTypes} toggleType={toggleType} />
-        <Button variant="outline" size="sm" className="gap-1">
-          Status
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-        <Button variant="outline" size="sm" className="gap-1">
-          More filters
-          <ChevronDown className="h-4 w-4" />
-        </Button>
+        <ToolbarButton label="Status" />
+        <ToolbarButton label="More filters" />
         {selectedTypes.length > 0 && (
-          <Button
-            variant="link"
-            size="sm"
-            className="text-blue-500"
-            onClick={clearFilters}
-          >
-            Clear filters
-          </Button>
+          <button onClick={clearFilters} className="h-8 px-2 text-blue-600 text-[13px] font-medium hover:underline">Clear</button>
         )}
       </div>
-      <div className="flex items-center gap-2"> {/* Right group */}
-       
-        <Button variant="outline" size="sm">
-          <ListFilter className="h-4 w-4" />
-        </Button>
-        <Button variant="outline" size="sm">
-          Group
-        </Button>
-        <div className="flex items-center border border-gray-300 rounded-sm w-[64px] h-[36px] pl-[1px]">
-          <button
-            className="w-[32px] h-[32px] font-medium text-blue-500 bg-[#E9F2FE] border border-[#1868DB] rounded-[2px] flex items-center justify-center"
-            onClick={() => console.log("Table selected")}
-          >
-            <TableProperties className="h-4 w-4" /> 
-          </button>
-          <button
-            className="w-[32px] h-[32px] font-medium text-black-500 bg-white rounded-[2px] flex items-center justify-center"
-            onClick={() => console.log("Detail selected")}
-          >
-            <PanelLeft className="h-4 w-4" />
-          </button>
+      <div className="flex items-center gap-2">
+        <ToolbarIconButton icon={<ListFilter className="h-4 w-4" />} />
+        <ToolbarButton label="Group" />
+        <div className="flex items-center h-8 rounded-md border border-gray-200 overflow-hidden bg-white">
+          <button className="w-9 h-full flex items-center justify-center bg-blue-50 text-blue-600 border-r border-gray-200" title="Table view"><TableProperties className="h-4 w-4" /></button>
+          <button className="w-9 h-full flex items-center justify-center text-gray-600 hover:text-gray-800" title="Detail pane"><PanelLeft className="h-4 w-4" /></button>
         </div>
         {selectedTypes.length > 0 && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="sm"
-              >
-                <RefreshCw className="h-4 w-4" />
-              </Button>
+              <button className="h-8 w-8 inline-flex items-center justify-center rounded-md border border-gray-200 bg-white hover:bg-gray-50">
+                <RefreshCw className="h-4 w-4 text-gray-600" />
+              </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white">
-              <DropdownMenuItem 
-                className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
-                onClick={() => setIsSaveModalOpen(true)}
-              >
-                Save list
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                className="cursor-pointer py-2 px-4 text-base focus:bg-gray-100"
-                onClick={handleResetChanges}
-              >
-                Reset to last saved
-              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer py-2 px-4 text-sm focus:bg-gray-100" onClick={() => setIsSaveModalOpen(true)}>Save list</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer py-2 px-4 text-sm focus:bg-gray-100" onClick={handleResetChanges}>Reset to last saved</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-        <SaveListModal
-          isOpen={isSaveModalOpen}
-          onClose={() => setIsSaveModalOpen(false)}
-          onSave={handleSave}
-        />
-        <Button variant="outline" size="sm">
-          <Ellipsis className="h-4 w-4" />
-        </Button>
-       
+        <SaveListModal isOpen={isSaveModalOpen} onClose={() => setIsSaveModalOpen(false)} onSave={handleSave} />
+        <ToolbarIconButton icon={<Ellipsis className="h-4 w-4" />} />
       </div>
     </div>
+  )
+}
+
+function ToolbarButton({ label }: { label: string }) {
+  return (
+    <button className="inline-flex items-center h-8 px-3 rounded-md border border-gray-200 bg-white text-[13px] text-gray-700 hover:bg-gray-50 font-medium">
+      {label}
+      <ChevronDown className="ml-1 h-4 w-4 text-gray-500" />
+    </button>
+  )
+}
+
+function ToolbarIconButton({ icon }: { icon: React.ReactNode }) {
+  return (
+    <button className="h-8 w-8 inline-flex items-center justify-center rounded-md border border-gray-200 bg-white hover:bg-gray-50 text-gray-600">
+      {icon}
+    </button>
   )
 }
