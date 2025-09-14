@@ -1,11 +1,15 @@
 import { Search, Settings, BellDot, HelpCircle, MessageCircle, Plus } from "lucide-react";
+import { useState } from "react";
+import { ConversationalCreateModal } from "./ConversationalCreateModal";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import AtlaskitButton from '@atlaskit/button';
 
 export function TopNav() {
+  const [showCreateModal, setShowCreateModal] = useState(false);
   return (
-    <nav className="h-14 border-b flex items-center px-4 justify-between bg-white">
+    <>
+      <nav className="h-14 border-b flex items-center px-4 justify-between bg-white">
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <svg
@@ -45,7 +49,7 @@ export function TopNav() {
       </div>
 
       <div className="flex items-center space-x-4">
-        <AtlaskitButton appearance="primary">Create</AtlaskitButton>
+        <AtlaskitButton appearance="primary" onClick={() => setShowCreateModal(true)}>Create</AtlaskitButton>
         <Button variant="ghost" size="icon">
           <MessageCircle className="h-5 w-5" />
         </Button>
@@ -63,6 +67,8 @@ export function TopNav() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
-    </nav>
+  </nav>
+  <ConversationalCreateModal open={showCreateModal} onClose={() => setShowCreateModal(false)} />
+  </>
   );
 }
